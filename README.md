@@ -3,7 +3,7 @@ Hi, I'm John Renz Natividad — a passionate full-stack developer, tech enthusia
 
 💡 "Code is not just a skill, it’s a tool to create possibilities."
 
-🧠 4th-year BSIT student
+🧠 FreshGraduate Student
 
 🌱 Currently learning: ASP.NET Core and IoT automation
 
