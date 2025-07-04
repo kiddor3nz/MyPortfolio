@@ -1,9 +1,8 @@
 <template>
-<GuestLayout>This is the Contact View</GuestLayout>
+This is the Contact View
 
 </template>
 
 <script setup>
 
-import GuestLayout from '../Layout/GuestLayout.vue'
 </script>

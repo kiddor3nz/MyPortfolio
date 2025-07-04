@@ -1,9 +1,8 @@
 <template>
-<GuestLayout>This is the Home View</GuestLayout>
+This is the Home View
 
 </template>
 
 <script setup>
 
-import GuestLayout from '../Layout/GuestLayout.vue'
 </script>

@@ -3,7 +3,7 @@
 
   <!-- Apply margin-top dynamically -->
   <div :style="{ marginTop: navbarHeight + 'px' }">
-    <slot></slot>
+    <router-view />
   </div>
 </template>
 
