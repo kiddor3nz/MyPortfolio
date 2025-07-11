@@ -11,8 +11,11 @@ const useUserStore = defineStore('user', {
           console.log(data)
           this.user = data
         })
+    },logout() {
+      this.user = null
     }
-  }
+  },
+  persist: true // ✅ this enables persistence for the whole store
 })
 
 export default useUserStore;

@@ -9,6 +9,7 @@ import SignupView from '@/views/Auth/SignupView.vue'
 import AdminHome from '@/views/Admin/AdminHome.vue'
 import AdminLayout from '@/Layout/AdminLayout.vue'
 import useUserStore from '@/store/user'
+import AdminProjects from '@/views/Admin/AdminProjects.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -55,9 +56,14 @@ const router = createRouter({
       component: AdminLayout,
       children: [
         {
-          path: '/admin-home',
+          path: 'home',
           name: 'adminhome',
           component: AdminHome,
+        },
+        {
+          path: 'projects',
+          name: 'adminprojects',
+          component:AdminProjects
         }
       ],
       beforeEnter: async(to, from, next) => {

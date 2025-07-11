@@ -1,77 +1,157 @@
 <template>
-  <nav ref="navbarRef"
-    class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">My Personal Portfolio</span>
-      <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-        <router-link to="/login" type="button"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Admin Access</router-link>
-        <button data-collapse-toggle="navbar-sticky" type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-sticky" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M1 1h15M1 7h15M1 13h15" />
-          </svg>
-        </button>
+  <nav class="floating-nav" :class="{ 'nav-visible': isVisible }">
+    <div class="nav-container">
+      <div class="logo-container">
+        <router-link :to="{name: 'login'}" class="logo-text">JRN</router-link>
+        <div class="logo-pulse"></div>
       </div>
-      <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-        <ul
-          class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <router-link to="/home" :class="[
-            'block py-2 px-3 rounded-sm md:p-0',
-            route.path === '/home'
-              ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500'
-              : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-          ]">Home</router-link>
-
-          <router-link to="/about" :class="[
-            'block py-2 px-3 rounded-sm md:p-0',
-            route.path === '/about'
-              ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500'
-              : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-          ]">About</router-link>
-
-          <router-link to="/project" :class="[
-            'block py-2 px-3 rounded-sm md:p-0',
-            route.path === '/project'
-              ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500'
-              : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-          ]">Projects</router-link>
-          <router-link to="/contact" :class="[
-            'block py-2 px-3 rounded-sm md:p-0',
-            route.path === '/contact'
-              ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:dark:text-blue-500'
-              : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-          ]">Contact Me</router-link>
-        </ul>
+      <div class="nav-links">
+        <a 
+          v-for="link in navLinks" 
+          :key="link.id"
+          :href="`#${link.id}`" 
+          @click.prevent="$emit('navigate', link.id)" 
+          class="nav-link"
+        >
+          <span class="nav-number">{{ link.number }}</span>
+          <span class="nav-text">{{ link.text }}</span>
+        </a>
+      </div>
+      <div class="nav-toggle" @click="toggleMobileNav">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, defineEmits } from 'vue'
-import { useRoute } from 'vue-router'
-
-const emit = defineEmits(['height-change'])
-const navbarRef = ref(null)
-
-const emitHeight = () => {
-  if (navbarRef.value) {
-    emit('height-change', navbarRef.value.offsetHeight)
+defineProps({
+  isVisible: {
+    type: Boolean,
+    default: true
   }
+})
+
+defineEmits(['navigate'])
+
+const navLinks = [
+  { id: 'home', number: '01', text: 'Home' },
+  { id: 'about', number: '02', text: 'About' },
+  { id: 'work', number: '03', text: 'Work' },
+  { id: 'contact', number: '04', text: 'Contact' }
+]
+
+const toggleMobileNav = () => {
+  // Mobile navigation toggle logic
+  console.log('Mobile nav toggled')
+}
+</script>
+
+<style scoped>
+.floating-nav {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  z-index: 1000;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
 }
 
-onMounted(() => {
-  emitHeight()
-  window.addEventListener('resize', emitHeight)
-})
+.floating-nav.nav-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
 
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', emitHeight)
-})
+.nav-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 12px 24px;
+  gap: 32px;
+}
 
-const route = useRoute()
-</script>
+.logo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 16px;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.logo-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  opacity: 0.3;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.1; }
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-number {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 20px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+}
+</style>
