@@ -77,7 +77,7 @@ const categories = ref([])
 
 
 onMounted(() => {
-  axiosClient.get('/api/about')
+  axiosClient.get('/api/about-user')
     .then((res) => {
       about.value = res.data
     })
