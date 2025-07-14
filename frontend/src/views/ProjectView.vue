@@ -29,8 +29,8 @@
             </div>
             <h3 class="project-title">{{ project.projectName }}</h3>
             <p class="project-description">{{ project.description }}</p>
-            <div class="project-links">
-              <a href="#" class="project-link" @click.prevent="$emit('view-project', project)">
+            <div class="project-links" v-if="project.link">
+              <a :href="project.link" class="project-link">
                 <span>View Project</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path d="M7 17L17 7M17 7H7M17 7V17" />

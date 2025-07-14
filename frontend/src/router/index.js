@@ -10,6 +10,7 @@ import AdminHome from '@/views/Admin/AdminHome.vue'
 import AdminLayout from '@/Layout/AdminLayout.vue'
 import useUserStore from '@/store/user'
 import AdminProjects from '@/views/Admin/AdminProjects.vue'
+import AdminAbout from '@/views/Admin/AdminAbout.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -64,6 +65,11 @@ const router = createRouter({
           path: 'projects',
           name: 'adminprojects',
           component:AdminProjects
+        },
+        {
+          path: 'about',
+          name: 'adminabout',
+          component:AdminAbout
         }
       ],
       beforeEnter: async(to, from, next) => {
