@@ -13,19 +13,19 @@
           <div class="contact-info">
             <div class="contact-item">
               <span class="contact-label">Email</span>
-              <a href="mailto:john@example.com" class="contact-value">john@example.com</a>
+              <a href="mailto:john@example.com" class="contact-value">natividadjohnrenz3232@gmail.com</a>
             </div>
             <div class="contact-item">
               <span class="contact-label">Location</span>
-              <span class="contact-value">San Francisco, CA</span>
+              <span class="contact-value">Quezon City, Philippines</span>
             </div>
           </div>
           
           <div class="social-links">
-            <a href="#" class="social-link" v-for="social in socialLinks" :key="social.name">
+            <div class="social-link" v-for="social in socialLinks" :key="social.name">
               <span class="social-name">{{ social.name }}</span>
-              <div class="social-arrow">↗</div>
-            </a>
+              <a :href="social.url" class="social-arrow">↗</a>
+            </div>
           </div>
         </div>
         
@@ -97,10 +97,9 @@ const form = ref({
 })
 
 const socialLinks = [
-  { name: 'Twitter', url: '#' },
-  { name: 'LinkedIn', url: '#' },
-  { name: 'GitHub', url: '#' },
-  { name: 'Dribbble', url: '#' }
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/john-renz-natividad-a502b9279/' },
+  { name: 'GitHub', url: 'https://github.com/kiddor3nz' },
+  { name: 'Facebook', url: 'https://www.facebook.com/jhnrnzntvdd6' }
 ]
 
 const handleSubmit = () => {
