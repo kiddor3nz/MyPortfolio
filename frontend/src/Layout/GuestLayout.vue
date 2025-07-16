@@ -41,7 +41,7 @@
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-text">
-          <p>© 2024 John Doe. Crafted with passion and precision.</p>
+          <p>© 2025 John Renz Natividad. Crafted with passion and precision.</p>
         </div>
         <div class="footer-time">
           <span>{{ currentTime }}</span>
@@ -149,8 +149,8 @@ const handleFormSubmit = (formData) => {
 const updateTime = () => {
   const now = new Date()
   currentTime.value = now.toLocaleTimeString('en-US', { 
-    timeZone: 'America/Los_Angeles',
-    hour12: false 
+    timeZone: 'Asia/Manila',
+    hour12: true 
   })
 }
 

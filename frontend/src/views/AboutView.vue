@@ -10,16 +10,22 @@
         <div class="about-text">
           <div class="about-intro" :class="{ 'animate-in': isAnimated }">
             <p class="about-paragraph">
-            {{ about.description}}
+              I'm a passionate full-stack developer with a keen eye for design and a love for creating 
+              exceptional digital experiences. With over 2 years of experience as a freelance developer, I've had the privilege 
+              of working with clients.
+            </p>
+            <p class="about-paragraph">
+              My approach combines technical skills with creative problem-solving, always striving 
+              to push the boundaries of what's possible while maintaining clean, efficient code.
             </p>
           </div>
           
           <div class="skills-grid" :class="{ 'animate-in': isAnimated }">
-            <div class="skill-category" v-for="(category, index) in categories" :key="index">
-              <h3 class="skill-title">{{ category.category }}</h3>
+            <div class="skill-category" v-for="(category, index) in skillCategories" :key="index">
+              <h3 class="skill-title">{{ category.title }}</h3>
               <div class="skill-items">
-                <span v-for="stacks in category.stacks" :key="stacks" class="skill-tag">
-                  {{ stacks.stack }}
+                <span v-for="skill in category.skills" :key="skill" class="skill-tag">
+                  {{ skill }}
                 </span>
               </div>
             </div>
@@ -41,11 +47,11 @@
                   <span class="stat-label">Projects</span>
                 </div>
                 <div class="stat-item">
-                  <span class="stat-number">{{ about.years }}+</span>
+                  <span class="stat-number">2+</span>
                   <span class="stat-label">Years</span>
                 </div>
                 <div class="stat-item">
-                  <span class="stat-number">{{ about.clients }}+ </span>
+                  <span class="stat-number">10+</span>
                   <span class="stat-label">Clients</span>
                 </div>
               </div>
@@ -59,45 +65,34 @@
 
 <script setup>
 import { ref } from 'vue'
-import { onMounted } from 'vue'
-import axiosClient from '@/axios'
 
 defineProps({
   isAnimated: {
     type: Boolean,
-    default: true // <-- make it true for testing
+    default: false
   }
 })
 
-
 const aboutSection = ref(null)
-const about = ref([])
-const project = ref([])
-const categories = ref([])
 
-
-onMounted(() => {
-  axiosClient.get('/api/about-user')
-    .then((res) => {
-      about.value = res.data
-    })
-})
-
-onMounted(() => {
-  axiosClient.get('/api/projects')
-    .then((res) => {
-      project.value = res.data
-    })
-})
-
-onMounted(() => {
-  axiosClient.get('/api/categories')
-    .then((res) => {
-      categories.value = res.data
-    })
-})
-
-
+const skillCategories = [
+  {
+    title: 'Frontend',
+    skills: ['Vue.js', 'Shadcn', 'Tailwind']
+  },
+  {
+    title: 'Backend',
+    skills: ['PHP', 'Laravel', 'Python','Django', 'C++', 'REST API', 'MYSQL']
+  },
+  {
+    title: 'Tools And Technologies',
+    skills: ['Github', 'MQTT', 'Websocket']
+  },
+  {
+    title: 'Project Management & Methodologies',
+    skills: ['Agile Methodology', 'Prototyping']
+  }
+]
 
 defineExpose({
   aboutSection

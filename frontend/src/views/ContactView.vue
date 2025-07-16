@@ -2,74 +2,117 @@
   <section id="contact" class="contact-section" ref="contactSection">
     <div class="section-container">
       <div class="contact-content">
-        <div class="contact-text" :class="{ 'animate-in': isAnimated }">
+        <div class="contact-header" :class="{ 'animate-in': isAnimated }">
           <span class="section-number">04</span>
-          <h2 class="contact-title">Let's Create Something Amazing Together</h2>
-          <p class="contact-description">
-            Ready to bring your vision to life? I'm always excited to work on new projects 
-            and collaborate with forward-thinking individuals and teams.
+          <h2 class="contact-title">Let's Connect</h2>
+          <p class="contact-subtitle">
+            Interested in my work? Here are my details.
           </p>
-          
-          <div class="contact-info">
-            <div class="contact-item">
-              <span class="contact-label">Email</span>
-              <a href="mailto:john@example.com" class="contact-value">natividadjohnrenz3232@gmail.com</a>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Main Contact Card -->
+          <div class="contact-main-card" :class="{ 'animate-in': isAnimated }">
+            <div class="contact-avatar">
+              <div class="avatar-image">
+                <div class="avatar-icon">👋</div>
+              </div>
+              <div class="avatar-glow"></div>
             </div>
-            <div class="contact-item">
-              <span class="contact-label">Location</span>
-              <span class="contact-value">Quezon City, Philippines</span>
+
+            <div class="contact-details">
+              <h3 class="contact-name">John Renz Natividad</h3>
+              <p class="contact-role">Freelance Developer</p>
+
+              <div class="contact-methods">
+                <a href="mailto:john@example.com" class="contact-method primary">
+                  <div class="method-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </div>
+                  <div class="method-content">
+                    <span class="method-label">Email</span>
+                    <span class="method-value">natividadjohnrenz3232@gmail.com</span>
+                  </div>
+                  <div class="method-arrow">→</div>
+                </a>
+
+                <a href="tel:+1234567890" class="contact-method">
+                  <div class="method-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </div>
+                  <div class="method-content">
+                    <span class="method-label">Phone</span>
+                    <span class="method-value">+639206753208</span>
+                  </div>
+                  <div class="method-arrow">→</div>
+                </a>
+              </div>
             </div>
           </div>
-          
-          <div class="social-links">
-            <div class="social-link" v-for="social in socialLinks" :key="social.name">
-              <span class="social-name">{{ social.name }}</span>
-              <a :href="social.url" class="social-arrow">↗</a>
+
+          <!-- Info Cards -->
+          <div class="contact-info-cards">
+            <div class="info-card location-card" :class="{ 'animate-in': isAnimated }">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">Location</h4>
+                <p class="card-value">Quezon City, Philippines</p>
+                <p class="card-detail">Available for remote work worldwide</p>
+              </div>
+            </div>
+
+            <div class="info-card timezone-card" :class="{ 'animate-in': isAnimated }">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12,6 12,12 16,14" />
+                </svg>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">Local Time</h4>
+                <p class="card-value">{{ currentTime }}</p>
+              </div>
+            </div>
+
+            <div class="info-card availability-card" :class="{ 'animate-in': isAnimated }">
+              <div class="card-icon">
+                <div class="status-indicator"></div>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">Availability</h4>
+                <p class="card-value">Open for Projects</p>
+              </div>
             </div>
           </div>
         </div>
-        
-        <div class="contact-form" :class="{ 'animate-in': isAnimated }">
-          <form @submit.prevent="handleSubmit" class="form-container">
-            <div class="form-group">
-              <label for="name" class="form-label">Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                v-model="form.name"
-                class="form-input"
-                required
-              >
-            </div>
-            <div class="form-group">
-              <label for="email" class="form-label">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                v-model="form.email"
-                class="form-input"
-                required
-              >
-            </div>
-            <div class="form-group">
-              <label for="message" class="form-label">Message</label>
-              <textarea 
-                id="message" 
-                v-model="form.message"
-                class="form-textarea"
-                rows="5"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="form-submit">
-              <span class="submit-text">Send Message</span>
-              <div class="submit-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"/>
-                </svg>
+
+        <!-- Social Links -->
+        <div class="social-section" :class="{ 'animate-in': isAnimated }">
+          <h3 class="social-title">Find me elsewhere</h3>
+          <div class="social-grid">
+            <a v-for="social in socialLinks" :key="social.name" :href="social.url" class="social-card" target="_blank"
+              rel="noopener noreferrer">
+              <div class="social-icon">
+                <component :is="social.icon" />
               </div>
-            </button>
-          </form>
+              <div class="social-content">
+                <span class="social-name">{{ social.name }}</span>
+                <span class="social-handle">{{ social.handle }}</span>
+              </div>
+              <div class="social-arrow">↗</div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -77,7 +120,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 defineProps({
   isAnimated: {
@@ -86,34 +129,46 @@ defineProps({
   }
 })
 
-defineEmits(['form-submit'])
-
 const contactSection = ref(null)
-
-const form = ref({
-  name: '',
-  email: '',
-  message: ''
-})
+const currentTime = ref('')
 
 const socialLinks = [
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/john-renz-natividad-a502b9279/' },
-  { name: 'GitHub', url: 'https://github.com/kiddor3nz' },
-  { name: 'Facebook', url: 'https://www.facebook.com/jhnrnzntvdd6' }
+  {
+    name: 'Facebook',
+    handle: '@jhnrnzntvdd6',
+    url: 'https://www.facebook.com/jhnrnzntvdd6',
+    icon: 'TwitterIcon'
+  },
+  {
+    name: 'LinkedIn',
+    handle: '/in/john-renz-natividad',
+    url: 'https://www.linkedin.com/in/john-renz-natividad-a502b9279/',
+    icon: 'LinkedInIcon'
+  },
+  {
+    name: 'GitHub',
+    handle: '@kiddor3nz',
+    url: 'https://github.com/kiddor3nz',
+    icon: 'GitHubIcon'
+  },
 ]
 
-const handleSubmit = () => {
-  console.log('Form submitted:', form.value)
-  // Emit event to parent component
-  // $emit('form-submit', form.value)
-  
-  // Reset form after submission
-  form.value = {
-    name: '',
-    email: '',
-    message: ''
-  }
+
+
+const updateTime = () => {
+  const now = new Date()
+  currentTime.value = now.toLocaleTimeString('en-US', {
+    timeZone: 'Asia/Manila',
+    hour12: true,
+    hour: 'numeric',
+    minute: '2-digit'
+  })
 }
+
+onMounted(() => {
+  updateTime()
+  setInterval(updateTime, 1000)
+})
 
 defineExpose({
   contactSection
@@ -122,7 +177,8 @@ defineExpose({
 
 <style scoped>
 .contact-section {
-  background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+  position: relative;
 }
 
 .section-container {
@@ -131,14 +187,9 @@ defineExpose({
   padding: 120px 24px;
 }
 
-.contact-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.contact-text {
+.contact-header {
+  text-align: center;
+  margin-bottom: 80px;
   opacity: 0;
   transform: translateY(50px);
   transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -148,12 +199,13 @@ defineExpose({
   font-size: 14px;
   color: rgba(255, 255, 255, 0.4);
   font-weight: 500;
+  display: block;
+  margin-bottom: 16px;
 }
 
 .contact-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 700;
-  line-height: 1.2;
   margin-bottom: 24px;
   background: linear-gradient(45deg, #ffffff, rgba(255, 255, 255, 0.6));
   -webkit-background-clip: text;
@@ -161,146 +213,314 @@ defineExpose({
   background-clip: text;
 }
 
-.contact-description {
-  font-size: 18px;
+.contact-subtitle {
+  font-size: 20px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 48px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.contact-info {
-  margin-bottom: 48px;
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 80px;
 }
 
-.contact-item {
+.contact-main-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(20px);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: 0.2s;
+}
+
+.contact-avatar {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 32px;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  font-size: 40px;
+  position: relative;
+  z-index: 2;
 }
 
-.contact-label {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.avatar-glow {
+  position: absolute;
+  inset: -15px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0.4;
+  animation: avatarGlow 3s ease-in-out infinite alternate;
 }
 
-.contact-value {
-  font-size: 16px;
+@keyframes avatarGlow {
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.contact-name {
+  font-size: 28px;
+  font-weight: 700;
   color: #ffffff;
-  text-decoration: none;
+  margin-bottom: 8px;
 }
 
-.social-links {
+.contact-role {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 32px;
+}
+
+.contact-methods {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.social-link {
+.contact-method {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
-  color: rgba(255, 255, 255, 0.7);
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: inherit;
   transition: all 0.3s ease;
 }
 
-.social-link:hover {
-  color: #ffffff;
-  padding-left: 16px;
+.contact-method:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
-.social-arrow {
+.contact-method.primary {
+  background: linear-gradient(45deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.method-icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.method-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.method-content {
+  flex: 1;
+  text-align: left;
+}
+
+.method-label {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.method-value {
+  display: block;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.method-arrow {
+  color: rgba(255, 255, 255, 0.4);
   transition: transform 0.3s ease;
 }
 
-.social-link:hover .social-arrow {
+.contact-method:hover .method-arrow {
   transform: translate(4px, -4px);
 }
 
-.contact-form {
+.contact-info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
   opacity: 0;
   transform: translateY(50px);
   transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.location-card {
   transition-delay: 0.3s;
 }
 
-.form-container {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  padding: 40px;
-  backdrop-filter: blur(20px);
+.timezone-card {
+  transition-delay: 0.4s;
 }
 
-.form-group {
-  margin-bottom: 32px;
+.availability-card {
+  transition-delay: 0.5s;
 }
 
-.form-label {
-  display: block;
+.card-icon {
+  width: 24px;
+  height: 24px;
+  color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+}
+
+.card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.card-title {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.form-input, .form-textarea {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 16px;
-  color: #ffffff;
+.card-value {
   font-size: 16px;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.card-detail {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.social-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: 0.6s;
+}
+
+.social-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
   transition: all 0.3s ease;
 }
 
-.form-input:focus, .form-textarea:focus {
-  outline: none;
-  border-color: rgba(102, 126, 234, 0.5);
+.social-card:hover {
   background: rgba(255, 255, 255, 0.05);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.form-submit {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 18px 32px;
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  border: none;
-  border-radius: 12px;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  justify-content: center;
-}
-
-.form-submit:hover {
+  border-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
 }
 
-.submit-arrow svg {
-  width: 18px;
-  height: 18px;
+.social-icon {
+  width: 24px;
+  height: 24px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.social-content {
+  flex: 1;
+}
+
+.social-name {
+  display: block;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.social-handle {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.social-arrow {
+  color: rgba(255, 255, 255, 0.4);
   transition: transform 0.3s ease;
 }
 
-.form-submit:hover .submit-arrow svg {
+.social-card:hover .social-arrow {
   transform: translate(4px, -4px);
 }
 
@@ -310,9 +530,13 @@ defineExpose({
 }
 
 @media (max-width: 768px) {
-  .contact-content {
+  .contact-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 32px;
+  }
+
+  .social-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -320,8 +544,8 @@ defineExpose({
   .section-container {
     padding: 80px 16px;
   }
-  
-  .form-container {
+
+  .contact-main-card {
     padding: 24px;
   }
 }
