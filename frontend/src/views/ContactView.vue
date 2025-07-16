@@ -142,7 +142,7 @@ const socialLinks = [
   {
     name: 'LinkedIn',
     handle: '/in/john-renz-natividad',
-    url: 'https://www.linkedin.com/in/john-renz-natividad-a502b9279/',
+    url: 'https://www.linkedin.com/in/john-renz-natividad//',
     icon: 'LinkedInIcon'
   },
   {
